@@ -804,7 +804,7 @@
             window.TM_GATE.trackClick(label);
             setTimeout(function() {
                 document.querySelector('.tm-gate').scrollTop = 300;
-            })
+            });
         };
         window.TM_GATE.submitUOL = function(label, subscriber) {
             var email = document.querySelector('#email').value,
@@ -1437,5 +1437,7 @@
     window.UOLPD = window.UOLPD || {};
     window.UOLPD.contentGate = window.UOLPD.contentGate || (new ContentGate());
     window.UOLPD.contentGate.init();
-})(window, document);    </body>
+})(window, document);
+</script>
+</body>
 </html>
