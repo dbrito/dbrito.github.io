@@ -13,7 +13,7 @@
         <input type="submit">
     </form>
 
-    <!-- <script src="https://smartlock.google.com/client"></script> -->
+    <script src="https://smartlock.google.com/client"></script>
     <script type="text/javascript">
 
         window.onload = function() {
@@ -55,71 +55,71 @@
             }
         }
 
-        // window.onGoogleYoloLoad = (googleyolo) => {
-        //     const retrievePromise = googleyolo.retrieve({
-        //         supportedAuthMethods: [
-        //             "https://accounts.google.com",
-        //             "googleyolo://id-and-password"
-        //         ],
-        //         supportedIdTokenProviders: [{
-        //             uri: "https://accounts.google.com",
-        //             clientId: "974430336771-m40h3kqgtu8l2o4ns0ailqev5rt3so7f.apps.googleusercontent.com"
-        //         }]
-        //     });
+        window.onGoogleYoloLoad = (googleyolo) => {
+            const retrievePromise = googleyolo.retrieve({
+                supportedAuthMethods: [
+                    "https://accounts.google.com",
+                    "googleyolo://id-and-password"
+                ],
+                supportedIdTokenProviders: [{
+                    uri: "https://accounts.google.com",
+                    clientId: "778056338612-hvsq70lnuin04df5nhmv0btus5ep9bvi.apps.googleusercontent.com"
+                }]
+            });
 
-        //     retrievePromise.then((credential)=>{
-        //         console.debug('MEUK', credential);
-        //     }).catch((err)=> {
-        //         console.error(err) ;
+            retrievePromise.then((credential)=>{
+                console.debug('MEUK', credential);
+            }).catch((err)=> {
+                console.error(err) ;
 
-        //         const hintPromise = googleyolo.hint({
-        //             supportedAuthMethods: [
-        //                 "https://accounts.google.com"
-        //             ],
-        //             supportedIdTokenProviders: [{
-        //                 uri: "https://accounts.google.com",
-        //                 clientId: "974430336771-m40h3kqgtu8l2o4ns0ailqev5rt3so7f.apps.googleusercontent.com"
-        //             }]
-        //         });
-        //         hintPromise.then((credential) => {
-        //           console.log(credential);
-        //           if (credential.idToken) {
+                const hintPromise = googleyolo.hint({
+                    supportedAuthMethods: [
+                        "https://accounts.google.com"
+                    ],
+                    supportedIdTokenProviders: [{
+                        uri: "https://accounts.google.com",
+                        clientId: "778056338612-hvsq70lnuin04df5nhmv0btus5ep9bvi.apps.googleusercontent.com"
+                    }]
+                });
+                hintPromise.then((credential) => {
+                  console.log(credential);
+                  if (credential.idToken) {
 
-        //             // Send the token to your auth backend.
-        //             //useGoogleIdTokenForAuth(credential.idToken);
-        //           }
-        //         }, (error) => {
-        //           switch (error.type) {
-        //             case "userCanceled":
-        //               // The user closed the hint selector. Depending on the desired UX,
-        //               // request manual sign up or do nothing.
-        //               break;
-        //             case "noCredentialsAvailable":
-        //               // No hint available for the session. Depending on the desired UX,
-        //               // request manual sign up or do nothing.
-        //               break;
-        //             case "requestFailed":
-        //               // The request failed, most likely because of a timeout.
-        //               // You can retry another time if necessary.
-        //               break;
-        //             case "operationCanceled":
-        //               // The operation was programmatically canceled, do nothing.
-        //               break;
-        //             case "illegalConcurrentRequest":
-        //               // Another operation is pending, this one was aborted.
-        //               break;
-        //             case "initializationError":
-        //               // Failed to initialize. Refer to error.message for debugging.
-        //               break;
-        //             case "configurationError":
-        //               // Configuration error. Refer to error.message for debugging.
-        //               break;
-        //             default:
-        //               // Unknown error, do nothing.
-        //           }
-        //         });
-        //     });
-        // };
+                    // Send the token to your auth backend.
+                    //useGoogleIdTokenForAuth(credential.idToken);
+                  }
+                }, (error) => {
+                  switch (error.type) {
+                    case "userCanceled":
+                      // The user closed the hint selector. Depending on the desired UX,
+                      // request manual sign up or do nothing.
+                      break;
+                    case "noCredentialsAvailable":
+                      // No hint available for the session. Depending on the desired UX,
+                      // request manual sign up or do nothing.
+                      break;
+                    case "requestFailed":
+                      // The request failed, most likely because of a timeout.
+                      // You can retry another time if necessary.
+                      break;
+                    case "operationCanceled":
+                      // The operation was programmatically canceled, do nothing.
+                      break;
+                    case "illegalConcurrentRequest":
+                      // Another operation is pending, this one was aborted.
+                      break;
+                    case "initializationError":
+                      // Failed to initialize. Refer to error.message for debugging.
+                      break;
+                    case "configurationError":
+                      // Configuration error. Refer to error.message for debugging.
+                      break;
+                    default:
+                      // Unknown error, do nothing.
+                  }
+                });
+            });
+        };
     </script>
 </body>
 </html>
