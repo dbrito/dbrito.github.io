@@ -1,27 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>	
-	<meta property="og:title" content="Douglas dos Santos" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="http://dbrito.github.io/" />
-	<meta property="og:image" content="http://dbrito.github.io/logo.png" />
-	<script type="application/ld+json">
-		{
-		  "@context" : "http://schema.org",
-		  "@type" : "Person",
-		  "name" : "Douglas dos Santos Brito",
-		  "url" : "http://dbrito.github.io/",
-		  "sameAs" : [
-		    "https://www.facebook.com/douglas.santos.1460693",		    
-		    "https://www.linkedin.com/in/douglas1551",
-		    "https://plus.google.com/u/0/106183766230232086117"
-		  ]
-		}
-	</script>
-	<title>Douglas dos Santos</title>
-</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 
+    <title>Document</title>
+</head>
 <body>
-	
+    <form id="form" method="post">
+        <input type="text" name="id" autocomplete="username" />
+        <input type="password" name="password" autocomplete="current-password" />
+        <input type="submit">
+    </form>
+
+    <!-- <script src="https://smartlock.google.com/client"></script> -->
+    <script type="text/javascript">
+
+        window.onload = function() {
+            createCredential()
+        }
+
+        function createCredential() {
+            var teste = document.querySelector('#form');
+            teste.onsubmit = function (e) {
+                e.preventDefault();
+                var cred = new PasswordCredential({
+                    id: teste.querySelector('input[name="id"]').value,
+                    password: teste.querySelector('input[name="password"]').value,
+                    name:     'danese',
+                    iconURL: 'https://lh3.googleusercontent.com/-mR4jzYb5-mc/AAAAAAAAAAI/AAAAAAAABNE/0VRSVuzuHCE/photo.jpg?sz=96'
+                });
+
+                // navigator.credentials.store(cred).then(()=>console.log('feijoada'));
+
+                // setTimeout(function () {
+                //     navigator.credentials.get({
+                //         password: true
+                //     }).then(function(cred) { console.log('HERE', cred) });
+                // }, 3000);
+                //
+
+                var fecthOptions = {
+                     method: 'POST',
+                     mode: 'cors',
+                     credentials: cred
+                };
+
+                fetch('https://www.mocky.io/v2/5185415ba171ea3a00704eed', fecthOptions).then((res)=>{
+                    console.log(cred);
+                    navigator.credentials.store(cred).then(() => { console.log('salvi') });
+                })
+
+
+            }
+        }
+
+        // window.onGoogleYoloLoad = (googleyolo) => {
+        //     const retrievePromise = googleyolo.retrieve({
+        //         supportedAuthMethods: [
+        //             "https://accounts.google.com",
+        //             "googleyolo://id-and-password"
+        //         ],
+        //         supportedIdTokenProviders: [{
+        //             uri: "https://accounts.google.com",
+        //             clientId: "974430336771-m40h3kqgtu8l2o4ns0ailqev5rt3so7f.apps.googleusercontent.com"
+        //         }]
+        //     });
+
+        //     retrievePromise.then((credential)=>{
+        //         console.debug('MEUK', credential);
+        //     }).catch((err)=> {
+        //         console.error(err) ;
+
+        //         const hintPromise = googleyolo.hint({
+        //             supportedAuthMethods: [
+        //                 "https://accounts.google.com"
+        //             ],
+        //             supportedIdTokenProviders: [{
+        //                 uri: "https://accounts.google.com",
+        //                 clientId: "974430336771-m40h3kqgtu8l2o4ns0ailqev5rt3so7f.apps.googleusercontent.com"
+        //             }]
+        //         });
+        //         hintPromise.then((credential) => {
+        //           console.log(credential);
+        //           if (credential.idToken) {
+
+        //             // Send the token to your auth backend.
+        //             //useGoogleIdTokenForAuth(credential.idToken);
+        //           }
+        //         }, (error) => {
+        //           switch (error.type) {
+        //             case "userCanceled":
+        //               // The user closed the hint selector. Depending on the desired UX,
+        //               // request manual sign up or do nothing.
+        //               break;
+        //             case "noCredentialsAvailable":
+        //               // No hint available for the session. Depending on the desired UX,
+        //               // request manual sign up or do nothing.
+        //               break;
+        //             case "requestFailed":
+        //               // The request failed, most likely because of a timeout.
+        //               // You can retry another time if necessary.
+        //               break;
+        //             case "operationCanceled":
+        //               // The operation was programmatically canceled, do nothing.
+        //               break;
+        //             case "illegalConcurrentRequest":
+        //               // Another operation is pending, this one was aborted.
+        //               break;
+        //             case "initializationError":
+        //               // Failed to initialize. Refer to error.message for debugging.
+        //               break;
+        //             case "configurationError":
+        //               // Configuration error. Refer to error.message for debugging.
+        //               break;
+        //             default:
+        //               // Unknown error, do nothing.
+        //           }
+        //         });
+        //     });
+        // };
+    </script>
 </body>
 </html>
