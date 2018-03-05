@@ -93,6 +93,7 @@
         window.onGoogleYoloLoad = (googleyolo) => {
             const retrievePromise = googleyolo.retrieve({
                 supportedAuthMethods: [
+                    "https://accounts.google.com",
                     "googleyolo://id-and-password"
                 ],
                 supportedIdTokenProviders: [{
