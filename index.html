@@ -3,15 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <title>POC - YOLO</title>
+    <style>
+        .main {
+            display:table;
+            width: 100%;
+            height: 100vh;
+            /*background: #F00 url(/img/bg.jpg);*/
+            /*background-size: cover;*/
+        }
 
-    <title>Document</title>
+        .centered-item {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .login {
+            width: 400px;
+        }
+    </style>
 </head>
 <body>
-    <form id="form" method="post">
-        <input type="text" name="id" autocomplete="username" />
-        <input type="password" name="password" autocomplete="current-password" />
-        <input type="submit">
-    </form>
+    <div class="main">
+        <div class="centered-item">
+            <div class="row login">
+                <form id="form" method="post">
+                    <div class="row">
+                        <div class="input-field">
+                            <input id="id" name="id" type="text" autocomplete="username">
+                            <label class="active" for="id">Usuário</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="password" name="password" type="password" autocomplete="current-password">
+                            <label class="active" for="password">Senha</label>
+                        </div>
+                        <input class="waves-effect waves-light btn-large" type="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://smartlock.google.com/client"></script>
     <script type="text/javascript">
@@ -58,7 +93,6 @@
         window.onGoogleYoloLoad = (googleyolo) => {
             const retrievePromise = googleyolo.retrieve({
                 supportedAuthMethods: [
-                    "https://accounts.google.com",
                     "googleyolo://id-and-password"
                 ],
                 supportedIdTokenProviders: [{
