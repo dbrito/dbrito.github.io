@@ -24,6 +24,10 @@
         .login {
             width: 400px;
         }
+
+        #welcome {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -43,6 +47,9 @@
                         <input class="waves-effect waves-light btn-large" type="submit">
                     </div>
                 </form>
+                <div id="welcome">
+                    <h1>Olá MEUK, seja bem vindo</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -83,17 +90,19 @@
 
                 fetch('https://www.mocky.io/v2/5185415ba171ea3a00704eed', fecthOptions).then((res)=>{
                     console.log(cred);
-                    navigator.credentials.store(cred).then(() => { console.log('salvi') });
+                    navigator.credentials.store(cred).then(() => {
+                        console.log('salvi');
+                    });
                 })
 
-
+                document.querySelector('form').style.display = 'none';
+                document.querySelector('#welcome').style.display = 'block';
             }
         }
 
         window.onGoogleYoloLoad = (googleyolo) => {
             const retrievePromise = googleyolo.retrieve({
                 supportedAuthMethods: [
-                    "https://accounts.google.com",
                     "googleyolo://id-and-password"
                 ],
                 supportedIdTokenProviders: [{
