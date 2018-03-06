@@ -48,7 +48,7 @@
                     </div>
                 </form>
                 <div id="welcome">
-                    <h1>Olá MEUK, seja bem vindo</h1>
+                    <h2>Olá MEUK, seja bem vindo</h2>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
                 if (credential.password) {
                     document.querySelector('form').style.display = 'none';
                     document.querySelector('#welcome').style.display = 'block';
-                    document.querySelector('#welcome').innerHTML = 'Olá ' + credential.id;
+                    document.querySelector('#welcome h2').innerHTML = 'Olá ' + credential.id;
 
 
                 }
