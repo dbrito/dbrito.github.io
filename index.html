@@ -94,15 +94,13 @@
                         console.log('salvi');
                     });
                 })
-
-                document.querySelector('form').style.display = 'none';
-                document.querySelector('#welcome').style.display = 'block';
             }
         }
 
         window.onGoogleYoloLoad = (googleyolo) => {
             const retrievePromise = googleyolo.retrieve({
                 supportedAuthMethods: [
+                    "https://accounts.google.com",
                     "googleyolo://id-and-password"
                 ],
                 supportedIdTokenProviders: [{
@@ -112,6 +110,10 @@
             });
 
             retrievePromise.then((credential)=>{
+                if (credential.password) {
+                    document.querySelector('form').style.display = 'none';
+                    document.querySelector('#welcome').style.display = 'block';
+                }
                 console.debug('MEUK', credential);
             }).catch((err)=> {
                 console.error(err) ;
