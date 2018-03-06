@@ -73,25 +73,18 @@
                     iconURL: 'https://lh3.googleusercontent.com/-mR4jzYb5-mc/AAAAAAAAAAI/AAAAAAAABNE/0VRSVuzuHCE/photo.jpg?sz=96'
                 });
 
-                // navigator.credentials.store(cred).then(()=>console.log('feijoada'));
-
-                // setTimeout(function () {
-                //     navigator.credentials.get({
-                //         password: true
-                //     }).then(function(cred) { console.log('HERE', cred) });
-                // }, 3000);
-                //
-
                 var fecthOptions = {
-                     method: 'GET',
+                     method: 'POST',
                      mode: 'cors',
                      credentials: cred
                 };
 
-                fetch('https://dbrito.github.io/logo.png', fecthOptions).then((res)=>{
-                    console.log(cred);
+                fetch('https://www.mocky.io/v2/5185415ba171ea3a00704eed', fecthOptions).then((res)=>{
                     navigator.credentials.store(cred).then(() => {
-                        console.log('salvi');
+                        document.querySelector('form').style.display = 'none';
+                        document.querySelector('#welcome').style.display = 'block';
+                        document.querySelector('#welcome h2').innerHTML = 'Olá ' + credential.id;
+                        console.log('Credencial armazenada', cred);
                     });
                 })
             }
@@ -114,14 +107,11 @@
                     document.querySelector('form').style.display = 'none';
                     document.querySelector('#welcome').style.display = 'block';
                     document.querySelector('#welcome h2').innerHTML = 'Olá ' + credential.id;
-
-
                 }
                 console.debug('MEUK', credential);
             }).catch((err)=> {
-                console.error(err) ;
-
-                const hintPromise = googleyolo.hint({
+                console.error(err);
+                /*const hintPromise = googleyolo.hint({
                     supportedAuthMethods: [
                         "https://accounts.google.com"
                     ],
@@ -166,7 +156,7 @@
                     default:
                       // Unknown error, do nothing.
                   }
-                });
+                });*/
             });
         };
     </script>
