@@ -113,6 +113,9 @@
                 if (credential.password) {
                     document.querySelector('form').style.display = 'none';
                     document.querySelector('#welcome').style.display = 'block';
+                    document.querySelector('#welcome').innerHTML = 'Olá ' + credential.id;
+
+
                 }
                 console.debug('MEUK', credential);
             }).catch((err)=> {
