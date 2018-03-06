@@ -83,12 +83,12 @@
                 //
 
                 var fecthOptions = {
-                     method: 'POST',
+                     method: 'GET',
                      mode: 'cors',
                      credentials: cred
                 };
 
-                fetch('https://www.mocky.io/v2/5185415ba171ea3a00704eed', fecthOptions).then((res)=>{
+                fetch('https://dbrito.github.io/logo.png', fecthOptions).then((res)=>{
                     console.log(cred);
                     navigator.credentials.store(cred).then(() => {
                         console.log('salvi');
