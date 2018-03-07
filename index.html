@@ -58,7 +58,6 @@
 
     <script src="https://smartlock.google.com/client"></script>
     <script type="text/javascript">
-
         window.onload = function() {
             createCredential()
         }
@@ -73,7 +72,7 @@
                         id: teste.querySelector('input[name="id"]').value,
                         password: teste.querySelector('input[name="password"]').value,
                         name:     'POC',
-                        iconURL: ('A'+Date.now())
+                        iconURL: ('https://A'+Date.now()+'.com')
                     });
 
                     var fecthOptions = {
@@ -85,7 +84,10 @@
                         navigator.credentials.store(cred).then(() => {
                             document.querySelector('form').style.display = 'none';
                             document.querySelector('#welcome').style.display = 'block';
-                            document.querySelector('#welcome h2').innerHTML = 'Olá ' + cred.id;
+                            var hash = cred.iconURL;
+                            hash = hash.split('a')[1].split('.')[0];
+                            document.querySelector('#welcome h2').innerHTML = 'Olá ' + cred.id + '<br> #' + hash;
+
                             console.log('Credencial armazenada', cred);
                         });
                     })
@@ -113,7 +115,9 @@
                 if (credential.password) {
                     document.querySelector('form').style.display = 'none';
                     document.querySelector('#welcome').style.display = 'block';
-                    document.querySelector('#welcome h2').innerHTML = 'Olá ' + credential.id;
+                    var hash = credential.profilePicture;
+                    hash = hash.split('a')[1].split('.')[0];
+                    document.querySelector('#welcome h2').innerHTML = 'Olá ' + credential.id + '<br> #' + hash;
                 }
                 console.debug('HERE', credential);
             }).catch((err)=> {
