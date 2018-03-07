@@ -49,7 +49,7 @@
                     </div>
                 </form>
                 <div id="welcome">
-                    <h2>Olá MEUK, seja bem vindo</h2>
+                    <h2>Olá, seja bem vindo</h2>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                         });
                     })
                 } catch (err) {
-                    document.querySelector('.errorviewr').innerHTML = JSON.stringify(err);
+                    //document.querySelector('.errorviewr').innerHTML = JSON.stringify(err);
                 }
 
             }
@@ -113,9 +113,9 @@
                     document.querySelector('#welcome').style.display = 'block';
                     document.querySelector('#welcome h2').innerHTML = 'Olá ' + credential.id;
                 }
-                console.debug('MEUK', credential);
+                console.debug('HERE', credential);
             }).catch((err)=> {
-                document.querySelector('.errorviewr').innerHTML = JSON.stringify(err);
+                //document.querySelector('.errorviewr').innerHTML = JSON.stringify(err);
 
                 /*const hintPromise = googleyolo.hint({
                     supportedAuthMethods: [
