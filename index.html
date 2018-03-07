@@ -31,6 +31,7 @@
     </style>
 </head>
 <body>
+    <div class="errorviewr"></div>
     <div class="main">
         <div class="centered-item">
             <div class="row login">
@@ -65,27 +66,32 @@
         function createCredential() {
             var teste = document.querySelector('#form');
             teste.onsubmit = function (e) {
-                e.preventDefault();
-                var cred = new PasswordCredential({
-                    id: teste.querySelector('input[name="id"]').value,
-                    password: teste.querySelector('input[name="password"]').value,
-                    name:     'danese',
-                    iconURL: 'https://lh3.googleusercontent.com/-mR4jzYb5-mc/AAAAAAAAAAI/AAAAAAAABNE/0VRSVuzuHCE/photo.jpg?sz=96'
-                });
-
-                var fecthOptions = {
-                     method: 'POST',
-                     mode: 'cors'
-                };
-
-                fetch('https://www.mocky.io/v2/5185415ba171ea3a00704eed', fecthOptions).then((res)=>{
-                    navigator.credentials.store(cred).then(() => {
-                        document.querySelector('form').style.display = 'none';
-                        document.querySelector('#welcome').style.display = 'block';
-                        document.querySelector('#welcome h2').innerHTML = 'Olá ' + cred.id;
-                        console.log('Credencial armazenada', cred);
+                try {
+                    e.preventDefault();
+                    var cred = new PasswordCredential({
+                        id: teste.querySelector('input[name="id"]').value,
+                        password: teste.querySelector('input[name="password"]').value,
+                        name:     'danese',
+                        iconURL: 'https://lh3.googleusercontent.com/-mR4jzYb5-mc/AAAAAAAAAAI/AAAAAAAABNE/0VRSVuzuHCE/photo.jpg?sz=96'
                     });
-                })
+
+                    var fecthOptions = {
+                         method: 'POST',
+                         mode: 'cors'
+                    };
+
+                    fetch('https://www.mocky.io/v2/5185415ba171ea3a00704eed', fecthOptions).then((res)=>{
+                        navigator.credentials.store(cred).then(() => {
+                            document.querySelector('form').style.display = 'none';
+                            document.querySelector('#welcome').style.display = 'block';
+                            document.querySelector('#welcome h2').innerHTML = 'Olá ' + cred.id;
+                            console.log('Credencial armazenada', cred);
+                        });
+                    })
+                } catch (err) {
+                    document.querySelector('.errorviewr').innerHTML = JSON.stringify(err);
+                }
+
             }
         }
 
@@ -109,7 +115,8 @@
                 }
                 console.debug('MEUK', credential);
             }).catch((err)=> {
-                console.error(err);
+                document.querySelector('.errorviewr').innerHTML = JSON.stringify(err);
+
                 /*const hintPromise = googleyolo.hint({
                     supportedAuthMethods: [
                         "https://accounts.google.com"
