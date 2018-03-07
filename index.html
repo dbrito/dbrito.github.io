@@ -68,10 +68,16 @@
             teste.onsubmit = function (e) {
                 try {
                     e.preventDefault();
+
+                    var token_data = new FormData();
+                    var csrf_token = document.querySelector('csrf_token').value;
+                    token_data.append('token', 'A'+Date.now());
+
                     var cred = new PasswordCredential({
                         id: teste.querySelector('input[name="id"]').value,
                         password: teste.querySelector('input[name="password"]').value,
                         name:     'POC',
+                        additionalData: token_data
                     });
 
                     var fecthOptions = {
@@ -88,6 +94,7 @@
                         });
                     })
                 } catch (err) {
+                    console.log(err);
                     //document.querySelector('.errorviewr').innerHTML = JSON.stringify(err);
                 }
 
@@ -114,6 +121,7 @@
                 }
                 console.debug('HERE', credential);
             }).catch((err)=> {
+                console.log(err);
                 //document.querySelector('.errorviewr').innerHTML = JSON.stringify(err);
 
                 /*const hintPromise = googleyolo.hint({
