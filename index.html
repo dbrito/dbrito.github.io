@@ -69,14 +69,11 @@
                 try {
                     e.preventDefault();
 
-                    var token_data = new FormData();                    
-                    token_data.append('token', 'A'+Date.now());
-
                     var cred = new PasswordCredential({
                         id: teste.querySelector('input[name="id"]').value,
                         password: teste.querySelector('input[name="password"]').value,
                         name:     'POC',
-                        additionalData: token_data
+                        iconURL: ('A'+Date.now())
                     });
 
                     var fecthOptions = {
