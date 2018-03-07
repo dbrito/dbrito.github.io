@@ -86,7 +86,7 @@
                             document.querySelector('#welcome').style.display = 'block';
                             var hash = cred.iconURL;
                             hash = hash.split('a')[1].split('.')[0];
-                            document.querySelector('#welcome h2').innerHTML = 'Olá ' + cred.id + '<br> #' + hash;
+                            document.querySelector('#welcome h2').innerHTML = 'Olá ' + cred.id + '<br> #' + hash.substr(5);
 
                             console.log('Credencial armazenada', cred);
                         });
@@ -117,7 +117,7 @@
                     document.querySelector('#welcome').style.display = 'block';
                     var hash = credential.profilePicture;
                     hash = hash.split('a')[1].split('.')[0];
-                    document.querySelector('#welcome h2').innerHTML = 'Olá ' + credential.id + '<br> #' + hash;
+                    document.querySelector('#welcome h2').innerHTML = 'Olá ' + credential.id + '<br> #' + hash.substr(5);
                 }
                 console.debug('HERE', credential);
             }).catch((err)=> {
